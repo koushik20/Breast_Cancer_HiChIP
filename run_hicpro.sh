@@ -1,0 +1,23 @@
+sudo nextflow run nf-core/hic -r 1.0.0 -c /mnt/hichip_results/HiChIP_scripts/custom_nextflow_v1.conf \
+       --reads '/mnt/hichip_results/BT549/HiChIP_MCF7-{A,B}_S{1,2}_R{1,2}_001.fastq.gz' \
+       -profile docker \
+       -resume \
+       --fasta '/home/koushik/Documents/HiC-Pro_3.1.0/annotation/hg38.fa' \
+       --igenomesIgnore \
+       --bwt2_index '/home/koushik/Documents/HiC-Pro_3.1.0/annotation/bowtie2_index/hg38' \
+       --chromosome_size '/home/koushik/Documents/HiC-Pro_3.1.0/annotation/chrom_hg38.sizes' \
+       --restriction_fragments '/home/koushik/Documents/HiC-Pro_3.1.0/annotation/dpnII_resfrag_hg38.bed' \
+       --splitFastq 10000000 \
+       --max_memory '64.GB' \
+       --max_time '36.h' \
+       --max_cpus 52 \
+       --outdir '/mnt/hicpro_results/MCF7_Nov2023' \
+       --bwt2_opts_end2end '--very-sensitive --end-to-end --reorder' \
+       --bwt2_opts_trimmed '--very-sensitive --end-to-end --reorder' \
+       --min_mapq 20 \
+       --min_cis_dist 1000 \
+       --ligation_site 'GATCGATC' \
+       --restriction_site '^GATC' \
+       --rm_dup \
+       --rm_multi \
+       --bins_size '1000,5000,20000,150000,500000,1000000'
